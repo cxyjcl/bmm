@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录界面</title>
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'/>
+    <link type="text/css" href="css/font-awesome.min.css" rel="stylesheet"/>
+    <link type="text/css" href="css/register.css" rel="stylesheet"/>
+    <link type="text/css" href="css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <form class="form-horizontal">
+                <span class="heading">用户注册</span>
+                <div class="red" id="error_message">&nbsp;</div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="login_name" placeholder="用户名"/>
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="real_name" placeholder="真实名"/>
+                    <i class="fa fa-group"></i>
+                </div>
+                <div class="form-group help">
+                    <input type="password" class="form-control" id="password" placeholder="密　码"/>
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="form-group help">
+                    <input type="password" class="form-control" id="re_password" placeholder="再次输入密码"/>
+                    <i class="fa fa-repeat"></i>
+                </div>
+                <div class="form-group help">
+                    <input type="text" class="form-control code" id="code" placeholder="验证码"/>
+                    <i class="fa fa-bell"></i>
+                    <img src="http://localhost:8080/code/verify" id="verify_img" class="code-image"/>
+                </div>
+                <div class="form-group">
+                    <button type="button" id="submit_btn" class="btn btn-default">注册</button>
+                </div>
+                <a class="register" href="login">用户登录</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

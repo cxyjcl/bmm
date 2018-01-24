@@ -1,0 +1,112 @@
+html, body, div, table, tr, th, td, thead, tbody, tfoot {
+    margin: 0;
+    padding: 0;
+}
+input[type="text"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none !important;
+}
+td input.wd-full {
+    width: 100%;
+}
+td input.wd-lg {
+    width: 78%
+}
+td input.wd-md {
+    width: 50%;
+}
+input.wd-sm {
+    width: 25%;
+}
+input.wd-xs {
+    width: 15%;
+}
+input.underline {
+    border-bottom: 1px solid #666;
+}
+button {
+    margin-top: 5px;
+    padding: 8px 17px;
+    font-weight: normal;
+    color: #f1f2f7;
+    user-select: none;
+    line-height: 1;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none !important;
+    background-color: #3890ff;
+    background-image: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #217ef2;
+}
+
+.pic-btn {
+    width: 100%;
+    height: 150px;
+    color: #333;
+    text-align: center;
+    line-height: 2em;
+    background-color: inherit;
+}
+.pic-btn:hover {
+    background-color: inherit;
+}
+
+.dao-table-main, .footer {
+    margin: 15px auto;
+    width: 960px;
+}
+
+.dao-table.row {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.dao-table.row td,
+.dao-table.row th {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+}
+
+.dao-table.row td {
+    min-width: 4em;
+    text-align: left;
+}
+
+.dao-table.row th {
+    font-weight: bold;
+    text-align: center;
+}
+
+.dao-table.row tr {
+    height: 32px;
+}
+
+.dao-table.row .right {
+    text-align: right;
+}
+.footer {
+    text-align: center;
+}
+.footer span:first-of-type {
+    margin-right: 300px;
+}
+.radio-group {
+    width: 100%;
+    text-align: center;
+}
+.radio-group label, .radio-group input {
+    vertical-align: middle;
+}
+.radio-group label {
+    margin-right: 10px;
+}
