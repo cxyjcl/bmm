@@ -1,6 +1,7 @@
 package org.dmm.service.impl;
 
 import org.dmm.constants.DataStatusEnum;
+import org.dmm.entity.PageEntity;
 import org.dmm.entity.User;
 import org.dmm.service.UserService;
 import org.junit.Ignore;
@@ -38,7 +39,9 @@ public class UserServiceImplTest {
 
     @Test
     public void selectAll() throws Exception {
-
+        PageEntity entity = new PageEntity();
+        entity.setPageIndex(0);
+        service.findAllUser(entity);
     }
 
     @Test

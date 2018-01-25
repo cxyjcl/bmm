@@ -47,7 +47,7 @@ $("#submit_btn").click(function () {
                     $("#error_message").html(data.msg);
                     $("#verify_img").attr("src", "http://localhost:8080/code/verify?time=" + new Date().getTime());
                 } else {
-                    window.location.href = "http://localhost:8080/change"
+                    window.location.href = "http://localhost:8080/view/change"
                 }
             }
         });

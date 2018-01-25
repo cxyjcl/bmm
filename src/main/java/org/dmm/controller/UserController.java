@@ -1,13 +1,17 @@
 package org.dmm.controller;
 
 import org.dmm.constants.CommonStatusEnum;
+import org.dmm.constants.DataStatusEnum;
+import org.dmm.entity.PageEntity;
 import org.dmm.entity.User;
 import org.dmm.exception.PasswordException;
 import org.dmm.message.Message;
 import org.dmm.service.UserService;
+import org.dmm.vo.FindUser;
 import org.dmm.vo.LoginVo;
 import org.dmm.vo.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -71,7 +75,7 @@ public class UserController {
             return Message.error(CommonStatusEnum._CODE_ERROR.getCode(),
                     CommonStatusEnum._CODE_ERROR.getContent());
         }
-        User user = new User(vo.getLoginName(), vo.getPassword());
+        User user = new User(vo.getLoginName(), vo.getPassword(), vo.getRealName());
         userService.insert(user);
         return Message.success();
     }
@@ -85,5 +89,46 @@ public class UserController {
         return Message.success();
     }
 
+    @PostMapping("/user/update")
+    public Message updateUser(@RequestBody User user,HttpSession session){
+        Integer id = Integer.parseInt(session.getAttribute("userId").toString());
+        user.setId(id);
+        userService.update(user);
+        return Message.success();
+    }
 
+    /**
+     * Gets all user.
+     *
+     * @param pageEntity the page entity
+     * @return the all user
+     */
+    @PostMapping("/user/all/get")
+    public Message getAllUser(@RequestBody PageEntity pageEntity) {
+        Page<User> user = userService.findAllUser(pageEntity);
+        return Message.success(user);
+    }
+
+    @PostMapping("/user/get")
+    public Message getUser(HttpSession session){
+        Integer id = Integer.parseInt(session.getAttribute("userId").toString());
+        User user  = userService.selectById(id, DataStatusEnum._USE.getCode());
+        return Message.success(user);
+    }
+
+    @PostMapping("/user/find")
+    public Message getUser(@RequestBody FindUser user){
+        String realName = user.getRealName();
+        Integer pageIndex = user.getPageIndex();
+        PageEntity page =new PageEntity();
+        page.setPageIndex(pageIndex);
+        Page<User> userList  = userService.selectByRealName(realName,page);
+        return Message.success(userList);
+    }
+
+    @PostMapping("/update/user")
+    public Message update(@RequestBody User user){
+        userService.update(user);
+        return Message.success();
+    }
 }

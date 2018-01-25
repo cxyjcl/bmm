@@ -16,6 +16,7 @@
     <link type="text/css" rel="stylesheet" href="css/pace.css"/>
     <link type="text/css" rel="stylesheet" href="css/all.css"/>
     <link type="text/css" rel="stylesheet" href="css/jquery.notific8.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/manager.css"/>
     <!--Loading style-->
     <link type="text/css" rel="stylesheet" href="css/orange-blue.css" class="default-style"/>
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css"/>
@@ -52,19 +53,18 @@
     <div id="wrapper">
         <!--BEGIN SIDEBAR MENU-->
         <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side" style="min-height: 100%;">
-        <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side" style="min-height: 100%;">
             <div class="sidebar-collapse menu-scroll" style="height: auto; overflow: initial;">
                 <ul id="side-menu" class="nav">
                     <li class="user-panel">
-                        <div class="thumb"><img src="image/timg.jpg" alt="" class="img-circle"/>
+                        <div class="thumb"><img id="header_img" src="image/timg.jpg" alt="" class="img-circle"/>
                         </div>
                         <div class="info">
                             <p id="header_name">admin</p>
                             <ul class="list-inline list-unstyled">
-                                <li><a href="change.html" data-hover="tooltip"
+                                <li><a href="/view/change" data-hover="tooltip"
                                        title="" data-original-title="Profile"><i class="fa fa-user"></i></a>
                                 </li>
-                                <li><a href="login.html" data-hover="tooltip"
+                                <li><a href="/view/login" data-hover="tooltip"
                                        title="" data-original-title="Logout"><i class="fa fa-sign-out"></i></a>
                                 </li>
                             </ul>
@@ -72,7 +72,7 @@
                         <div class="clearfix"></div>
                     </li>
                     <li><a
-                            href="../register/list.html"><i
+                            href="/view/list"><i
                             class="fa fa-th-list fa-fw">
                         <div class="icon-bg bg-blue"></div>
                     </i><span class="menu-title">信息管理</span></a>
@@ -82,7 +82,7 @@
                         <div class="icon-bg bg-violet"></div>
                     </i><span class="menu-title">成员管理</span></a>
                     </li>
-                    <li><a href="change.html"><i
+                    <li><a href="/view/change"><i
                             class="fa fa-user fa-fw">
                         <div class="icon-bg bg-violet"></div>
                     </i><span class="menu-title">修改信息</span></a>
@@ -123,28 +123,29 @@
                                         <div class="table-container">
                                             <div class="row mbl">
                                                 <div class="col-lg-6">
+                                                    <div class="pagination-panel">页码 &nbsp;
+                                                        <a href="#" onClick="page_down()" id="down_page"
+                                                           class="btn btn-sm btn-default btn-prev gw-prev disabled"><i
+                                                                class="fa fa-angle-left"></i></a>&nbsp;
+                                                        <input type="text" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                                                        <a id="up_page"
+                                                           href="#"
+                                                           onClick="page_up()"
+                                                           class="btn btn-sm btn-default btn-prev gw-next"><i
+                                                                class="fa fa-angle-right"></i></a>&nbsp; 总页数为<span id="total_page"></span>
+                                                        &nbsp;
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
                                                     <div class="input-group input-group-sm mbs"><span
                                                             class="input-group-btn"><button type="button"
-                                                                                            data-toggle="dropdown"
-                                                                                            class="btn btn-danger dropdown-toggle">真实名
-&nbsp;<span class="caret"></span>
+                                                                                            class="btn btn-danger">真实名
                                                             </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="#"><i
-                                                                        class="fa fa-star"></i>&nbsp;
-                                                                    登录名
-                                                                </a>
-                                                                </li>
-                                                                <li><a href="#"><i class="fa fa-mail-reply"></i>&nbsp;
-                                                                    状态
-                                                                </a>
-                                                                </li>
-                                                            </ul>
                                                             </span>
                                                         <input type="text" placeholder="Enter here..."
-                                                               class="form-control"/><span class="input-group-btn"><button
-                                                                type="button" data-toggle="dropdown"
-                                                                class="btn btn-success dropdown-toggle">Search</button></span>
+                                                               class="form-control" id="real_input"/><span class="input-group-btn"><button
+                                                                type="button"
+                                                                class="btn btn-success"  id="search_btn">Search</button></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,7 +168,7 @@
                                                     <th>修改</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="list">
                                                 <tr>
                                                     <td>
                                                         <div class="icheckbox_minimal-grey" style="position: relative;">
@@ -236,8 +237,12 @@
                 <h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
             </div>
             <div class="modal-body">
+                <div class="red" id="error_message">&nbsp;</div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="login_name" placeholder="用户名"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="real_name" placeholder="真实名"/>
                 </div>
                 <div class="form-group help">
                     <input type="password" class="form-control" id="password" placeholder="密　码"/>
@@ -246,27 +251,20 @@
                     <input type="password" class="form-control" id="re_password" placeholder="再次输入密码"/>
                 </div>
                 <div class="form-group help">
-                    <select class="form-control">
-                        <option>开发部门</option>
-                        <option>销售部门</option>
-                    </select>
-                </div>
-                <div class="form-group help">
-                    <select class="form-control" id="sex">
-                        <option>经理</option>
-                        <option>员工</option>
+                    <select class="form-control" id="user_level">
+                        <option>管理员</option>
+                        <option>普通用户</option>
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
+                <button type="button" class="btn btn-primary" id="update_btn">提交更改</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-<script src="js/jquery.min.js"></script>
 <script src="js/global.js"></script>
-<script src="js/manager.js"></script>
+<script src="js/user/manager.js"></script>
 </body>
 </html>

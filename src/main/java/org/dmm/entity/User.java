@@ -21,7 +21,9 @@ public class User extends BaseEntity {
 
     private String realName;
 
-    private String userImg;
+    private String userImg = "image/timg.jpg";
+
+    private String userLevel = "普通用户";
 
     public User() {
     }
@@ -33,6 +35,12 @@ public class User extends BaseEntity {
     public User(String loginName, String password) {
         this.loginName = loginName;
         this.password = password;
+    }
+
+    public User(String loginName, String password, String realName) {
+        this.loginName = loginName;
+        this.password = password;
+        this.realName = realName;
     }
 
     public Integer getId() {
@@ -75,6 +83,14 @@ public class User extends BaseEntity {
         this.userImg = userImg;
     }
 
+    public String getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(String userLevel) {
+        this.userLevel = userLevel;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -83,6 +99,7 @@ public class User extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", realName='" + realName + '\'' +
                 ", userImg='" + userImg + '\'' +
+                ", userLevel='" + userLevel + '\'' +
                 '}';
     }
 }

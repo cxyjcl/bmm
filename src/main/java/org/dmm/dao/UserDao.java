@@ -1,6 +1,8 @@
 package org.dmm.dao;
 
 import org.dmm.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +19,5 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     User findByLoginName(String loginName);
 
+    Page<User> findByRealName(String realName, Pageable page);
 }

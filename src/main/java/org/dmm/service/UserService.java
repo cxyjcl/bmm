@@ -19,4 +19,5 @@ public interface UserService extends BaseService<User> {
 
     public Page<User> findAllUser(PageEntity pageEntity) throws NoDataException;
 
+    public Page<User> selectByRealName(String realName, PageEntity page);
 }

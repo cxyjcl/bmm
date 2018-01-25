@@ -57,10 +57,16 @@ public class UserServiceImpl implements UserService {
     public Page<User> findAllUser(PageEntity page) throws NoDataException {
         Integer index = page.getPageIndex();
         Integer size = page.getPageSize();
-        String field = page.getSortField();
-        String order = page.getOrderType();
-        Pageable pageable = new PageRequest(index, size, new Sort(order, field));
-        return null;
+        Pageable pageable = new PageRequest(index, size);
+        return dao.findAll(pageable);
+    }
+
+    @Override
+    public Page<User> selectByRealName(String realName, PageEntity page) {
+        Integer index = page.getPageIndex();
+        Integer size = page.getPageSize();
+        Pageable pageable = new PageRequest(index, size);
+        return dao.findByRealName(realName,pageable);
     }
 
     @Override
@@ -79,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectById(Integer id, String dataStatus) throws ConnectionRefusedException {
-        return null;
+        return dao.findOne(id);
     }
 
     @Override
@@ -95,7 +101,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(User entity) throws ConnectionRefusedException {
         String password = entity.getPassword();
-        if (!entity.getPassword().equals("")) {
+        if("".equals(entity.getLoginName())){
+            entity.setLoginName(null);
+        }
+        else if("".equals(entity.getRealName())){
+            entity.setRealName(null);
+        }
+        else if ("".equals(entity.getRealName())) {
+            entity.setPassword(null);
+        }
+        else{
             password = MD5Util.encode(password + salt);
             entity.setPassword(password);
             dao.save(entity);

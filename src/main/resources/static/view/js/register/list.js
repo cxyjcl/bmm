@@ -1,32 +1,31 @@
 /**
  * Created by pohoulong on 2018/1/17.
  */
-var pageIndex = 0;
-var pageTotal = 0;
+var pageIndex=0;
+var pageTotal=0;
 var url = "/user/all/get"
 var _data = {
     'pageIndex': pageIndex,
 };
-var userId;
 function page() {
     request();
 }
 $(function () {
     page();
 });
-function page_up() {
-    if ((pageIndex + 1) == pageTotal) {
+function page_up(){
+    if((pageIndex+1) == pageTotal){
         $("#up_page").addClass("disabled")
-    } else {
+    } else{
         pageIndex++;
         page();
         $("#up_page").removeClass("disabled")
     }
 }
 function page_down() {
-    if (pageIndex == 0) {
+    if(pageIndex==0){
         $("#down_page").addClass("disabled")
-    } else {
+    } else{
         $("#down_page").removeClass("disabled")
         pageIndex--;
         page();
@@ -34,18 +33,16 @@ function page_down() {
 }
 
 $("#search_btn").click(function () {
-    var realName = $("#real_input").val();
+    var realName= $("#real_input").val();
     url = "/user/find";
-    _data = {
+    _data={
         'realName': realName,
         'pageIndex': pageIndex
     };
     page();
 })
-function user_id() {
-    userId = $(this).attr("id");
-}
-function request() {
+
+function request(){
     $("#list").children().remove();
     $.ajax({
         headers: {
@@ -53,7 +50,7 @@ function request() {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': "*"
         },
-        url: "http://localhost:8080" + url,
+        url: "http://localhost:8080"+url,
         type: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -61,7 +58,7 @@ function request() {
         success: function (data) {
             var html = "";
             pageTotal = data.data.totalPages;
-            if ((pageIndex + 1) == pageTotal) {
+            if((pageIndex+1) == pageTotal){
                 $("#up_page").addClass("disabled")
             }
             $("#total_page").html(pageTotal)
@@ -77,37 +74,9 @@ function request() {
                 html += "<td>" + data.data.content[i].userLevel + "</td>"
                 html += "<td>" + date.toLocaleDateString() + "</td>"
                 html += "<td><span class='label label-sm label-success'>" + get_status(data.data.content[i].dataStatus) + "</span></td>"
-                html += "<td> <button type='button' id='" + data.data.content[i].id + "' onclick='user_id(this)' class='btn btn-default btn-xs' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td></tr>"
+                html += "<td> <button type='button' class='btn btn-default btn-xs' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td></tr>"
             }
             $("#list").append(html);
         }
     });
 }
-$("#update_btn").click(function () {
-    var userValue = $("#login_name").val();
-    var realValue = $("#real_name").val();
-    var wordValue = $("#password").val();
-    var rePassword = $("#re_password").val();
-    var userLevel = $("#user_level").val();
-    var _data = {
-        'loginName': userValue,
-        'realName': realValue,
-        'password': wordValue,
-        'userLevel': userLevel
-    };
-    $.ajax({
-        url: "http://localhost:8080/update/user",
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(_data),
-        success: function (data) {
-            if (data.code != "10000") {
-                $("#error_message").html(data.msg);
-            } else {
-                alert("更新成功！");
-            }
-        }
-    });
-
-})
