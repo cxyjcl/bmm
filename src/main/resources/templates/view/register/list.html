@@ -96,7 +96,7 @@
             <!--BEGIN TITLE & BREADCRUMB PAGE-->
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                 <div class="page-header pull-left">
-                    <div class="page-title">日志管理</div>
+                    <div class="page-title">信息管理</div>
                 </div>
                 <div class="btn btn-blue reportrange hide"><i class="fa fa-calendar"></i>&nbsp;<span>December 16, 2017 - January 14, 2018</span>&nbsp;report&nbsp;<i
                         class="fa fa-angle-down"></i>
@@ -111,13 +111,13 @@
                 <div id="table-action" class="row">
                     <div class="col-lg-12">
                         <ul id="tableactiondTab" class="nav nav-tabs">
-                            <li class="active"><a
+                            <li class="active"><a id="own_tab"
                                     href="#table-table-tab"
-                                    data-toggle="tab">个人日志</a>
+                                    data-toggle="tab">个人信息</a>
                             </li>
                             <li>
-                                <a href="#table-row-tab"
-                                   data-toggle="tab">日志列表</a>
+                                <a id="list_tab" href="#table-row-tab"
+                                   data-toggle="tab">信息列表</a>
                             </li>
                         </ul>
                         <div id="tableactionTabContent" class="tab-content">
@@ -127,20 +127,11 @@
                                         <div class="table-container">
                                             <div class="row mbl">
                                                 <div class="col-lg-6">
-                                                    <div class="input-group input-group-sm mbs"><span
-                                                            class="input-group-btn"><button type="button"
-                                                                                            class="btn btn-danger dropdown-toggle">表格名
-                                                            </button>
-                                                            </span>
-                                                        <input type="text" id="search_input" placeholder="Enter here..."
-                                                               class="form-control"/><span class="input-group-btn"><button
-                                                                type="button"
-                                                                class="btn btn-success dropdown-toggle" id="own_search">Search</button></span>
-                                                    </div>
+                                                    &nbsp;
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="tb-group-actions pull-right">
-                                                        <button class="btn btn-sm btn-primary submit-action"><i
+                                                        <button id="add_register" class="btn btn-sm btn-primary submit-action"><i
                                                                 class="fa fa-check"></i>添加
                                                         </button>
                                                     </div>
@@ -157,17 +148,19 @@
                                                                  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                         </div>
                                                     </th>
-                                                    <th>表格名</th>
                                                     <th width="10%">提交时间</th>
                                                     <th width="9%">状态</th>
                                                     <th width="12%">修改</th>
                                                     <th width="12%">删除</th>
                                                 </tr>
                                                 </thead>
+                                                <tbody id="own-list">
+
+                                                </tbody>
                                             </table>
                                         </div>
                                         <div class="row mbm">
-                                            <div class="col-lg-12 text-right">
+                                            <div class="col-lg-6">
                                                 <div class="pagination-panel">页码 &nbsp;
                                                     <a href="#" onClick="page_down()" id="down_page"
                                                        class="btn btn-sm btn-default btn-prev gw-prev disabled"><i
@@ -193,25 +186,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="input-group input-group-sm mbs"><span
                                                             class="input-group-btn"><button type="button"
-                                                                                            data-toggle="dropdown"
-                                                                                            class="btn btn-danger dropdown-toggle">姓名
-&nbsp;<span class="caret"></span>
+                                                                                            class="btn btn-danger">提交人
                                                             </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="#"><i
-                                                                        class="fa fa-tint"></i>&nbsp;
-表格名</a>
-                                                                </li>
-                                                                <li><a href="#"><i
-                                                                        class="fa fa-star"></i>&nbsp;
-状态</a>
-                                                                </li>
-                                                            </ul>
                                                             </span>
-                                                        <input type="text" placeholder="Enter here..."
+                                                        <input type="text" id="list_input" placeholder="Enter here..."
                                                                class="form-control"/>
                                                         <span class="input-group-btn">
-                                                            <button type="button" data-toggle="dropdown" class="btn btn-success dropdown-toggle">Search</button>
+                                                            <button type="button" data-toggle="dropdown" id="search_all_btn" class="btn btn-success">Search</button>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -227,7 +208,6 @@
                                                                  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                                         </div>
                                                     </th>
-                                                    <th>表格名</th>
                                                     <th width="10%">提交时间</th>
                                                     <th width="7%">提交人</th>
                                                     <th width="9%">状态</th>
@@ -235,34 +215,24 @@
                                                     <th width="12%">删除</th>
                                                 </tr>
                                                 </thead>
+                                                <tbody id="list">
+
+                                                </tbody>
                                             </table>
                                         </div>
                                         <div class="row mbm">
-                                            <div class="col-lg-12 text-right">
-                                                <div class="pagination-panel">
-                                                    <ul class="pagination pagination-sm man">
-                                                        <li>
-                                                            <a href="#">«</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">2</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">3</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">4</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">5</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">»</a>
-                                                        </li>
-                                                    </ul>
+                                            <div class="col-lg-6">
+                                                <div class="pagination-panel">页码 &nbsp;
+                                                    <a href="#" onClick="list_page_down()" id="list_down_page"
+                                                       class="btn btn-sm btn-default btn-prev gw-prev disabled"><i
+                                                            class="fa fa-angle-left"></i></a>&nbsp;
+                                                    <input type="text" value="1" class="pagination-panel-input form-control input-mini input-inline input-sm text-center gw-page"/>&nbsp;
+                                                    <a id="list_up_page"
+                                                       href="#"
+                                                       onClick="list_page_up()"
+                                                       class="btn btn-sm btn-default btn-prev gw-next"><i
+                                                            class="fa fa-angle-right"></i></a>&nbsp; 总页数为<span id="list_total_page"></span>
+                                                    &nbsp;
                                                 </div>
                                             </div>
                                         </div>

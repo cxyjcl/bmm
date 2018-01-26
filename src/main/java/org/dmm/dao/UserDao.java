@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface UserDao extends JpaRepository<User, Integer> {
 
-
     User findByLoginNameAndPassword(String loginName, String Password);
 
     User findByLoginName(String loginName);

@@ -17,15 +17,7 @@ public class RegisterInfo extends BaseEntity{
     @GeneratedValue
     private Integer id;
 
-    private String tablename;
-
-    private Integer userInfoId;
-
-    private Integer experienceId;
-
-    private Integer trainId;
-
-    private Integer jobId;
+    private String realName;
 
     public Integer getId() {
         return id;
@@ -35,55 +27,19 @@ public class RegisterInfo extends BaseEntity{
         this.id = id;
     }
 
-    public String getTablename() {
-        return tablename;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setTablename(String tablename) {
-        this.tablename = tablename;
-    }
-
-    public Integer getUserInfoId() {
-        return userInfoId;
-    }
-
-    public void setUserInfoId(Integer userInfoId) {
-        this.userInfoId = userInfoId;
-    }
-
-    public Integer getExperienceId() {
-        return experienceId;
-    }
-
-    public void setExperienceId(Integer experienceId) {
-        this.experienceId = experienceId;
-    }
-
-    public Integer getTrainId() {
-        return trainId;
-    }
-
-    public void setTrainId(Integer trainId) {
-        this.trainId = trainId;
-    }
-
-    public Integer getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(Integer jobId) {
-        this.jobId = jobId;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     @Override
     public String toString() {
         return "RegisterInfo{" +
                 "id=" + id +
-                ", tablename='" + tablename + '\'' +
-                ", userInfoId=" + userInfoId +
-                ", experienceId=" + experienceId +
-                ", trainId=" + trainId +
-                ", jobId=" + jobId +
+                ", realName='" + realName + '\'' +
                 '}';
     }
 }

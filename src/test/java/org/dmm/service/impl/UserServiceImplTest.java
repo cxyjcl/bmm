@@ -22,9 +22,8 @@ public class UserServiceImplTest {
     UserService service;
 
     @Test
-    @Ignore
     public void insert() throws Exception {
-        service.insert(new User("test", "test"));
+        service.insert(new User("admin", "test"));
     }
 
     @Test

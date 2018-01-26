@@ -11,7 +11,7 @@ import javax.persistence.Id;
  */
 @Entity
 @DynamicUpdate(true)
-public class Experience extends BaseEntity{
+public class Experience{
 
     @Id
     @GeneratedValue
@@ -22,6 +22,8 @@ public class Experience extends BaseEntity{
     private String ballTeam;
 
     private String remark;
+
+    private Integer registerInfoId;
 
     public Integer getId() {
         return id;
@@ -55,6 +57,14 @@ public class Experience extends BaseEntity{
         this.remark = remark;
     }
 
+    public Integer getRegisterInfoId() {
+        return registerInfoId;
+    }
+
+    public void setRegisterInfoId(Integer registerInfoId) {
+        this.registerInfoId = registerInfoId;
+    }
+
     @Override
     public String toString() {
         return "Experience{" +
@@ -62,6 +72,7 @@ public class Experience extends BaseEntity{
                 ", experienceDate='" + experienceDate + '\'' +
                 ", ballTeam='" + ballTeam + '\'' +
                 ", remark='" + remark + '\'' +
+                ", registerInfoId=" + registerInfoId +
                 '}';
     }
 }

@@ -73,7 +73,6 @@ public class UserServiceImpl implements UserService {
     public void insert(User entity) throws ConnectionRefusedException {
         String password = entity.getPassword();
         password = MD5Util.encode(password + salt);
-        UserInfo info = new UserInfo();
         entity.setPassword(password);
         dao.save(entity);
     }
@@ -101,16 +100,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int update(User entity) throws ConnectionRefusedException {
         String password = entity.getPassword();
-        if("".equals(entity.getLoginName())){
-            entity.setLoginName(null);
-        }
-        else if("".equals(entity.getRealName())){
-            entity.setRealName(null);
-        }
-        else if ("".equals(entity.getRealName())) {
-            entity.setPassword(null);
-        }
-        else{
+        if(!"".equals(password)){
             password = MD5Util.encode(password + salt);
             entity.setPassword(password);
             dao.save(entity);

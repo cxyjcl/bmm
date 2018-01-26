@@ -40,10 +40,15 @@ $("#search_btn").click(function () {
         'realName': realName,
         'pageIndex': pageIndex
     };
+    pageIndex=0;
     page();
 })
-function user_id() {
-    userId = $(this).attr("id");
+function get_info(which) {
+    userId=$(which).attr("id");
+    var td = $(which).parent().parent();
+    $("#login_name").val(td.find('td:eq(1)').text());
+    $("#real_name").val(td.find('td:eq(2)').text());
+    $("#user_level").val(td.find('td:eq(3)').text());
 }
 function request() {
     $("#list").children().remove();
@@ -77,7 +82,7 @@ function request() {
                 html += "<td>" + data.data.content[i].userLevel + "</td>"
                 html += "<td>" + date.toLocaleDateString() + "</td>"
                 html += "<td><span class='label label-sm label-success'>" + get_status(data.data.content[i].dataStatus) + "</span></td>"
-                html += "<td> <button type='button' id='" + data.data.content[i].id + "' onclick='user_id(this)' class='btn btn-default btn-xs' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td></tr>"
+                html += "<td> <button type='button' id='" + data.data.content[i].id + "' onclick='get_info(this)' class='btn btn-default btn-xs' data-toggle='modal' data-target='#myModal'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td></tr>"
             }
             $("#list").append(html);
         }
@@ -89,25 +94,36 @@ $("#update_btn").click(function () {
     var wordValue = $("#password").val();
     var rePassword = $("#re_password").val();
     var userLevel = $("#user_level").val();
-    var _data = {
-        'loginName': userValue,
-        'realName': realValue,
-        'password': wordValue,
-        'userLevel': userLevel
-    };
-    $.ajax({
-        url: "http://localhost:8080/update/user",
-        type: "POST",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(_data),
-        success: function (data) {
-            if (data.code != "10000") {
-                $("#error_message").html(data.msg);
-            } else {
-                alert("更新成功！");
+    if (wordValue == "") {
+        $("#error_message").html("密码不得为空");
+    }
+    else if (rePassword == "") {
+        $("#error_message").html("密码不得为空");
+    }
+    else if (rePassword != wordValue) {
+        $("#error_message").html("两次密码输入不正确");
+    } else{
+        var _data = {
+            'id': userId,
+            'loginName': userValue,
+            'realName': realValue,
+            'password': wordValue,
+            'userLevel': userLevel
+        };
+        $.ajax({
+            url: "http://localhost:8080/update/user",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(_data),
+            success: function (data) {
+                if (data.code != "10000") {
+                    $("#error_message").html(data.msg);
+                } else {
+                    alert("更新成功！");
+                }
             }
-        }
-    });
+        });
+    }
 
 })

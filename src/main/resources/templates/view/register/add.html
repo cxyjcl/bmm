@@ -7,18 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Table</title>
     <link type="text/css" rel="stylesheet" href="css/register/register.css"/>
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 
 <body>
-<!-- 寄出详细信息 -->
 <div class="dao-table-main" id="info">
-    <table class="dao-table row">
+    <table class="dao-table row" id="user_info">
         <thead>
         </thead>
         <tbody>
         <tr>
             <td>姓名</td>
-            <td><input type="text" autofocus/></td>
+            <td><input type="text" autofocus="autofocus"/></td>
             <td>出生</td>
             <td colspan="2"><input type="text"/></td>
             <td>籍贯</td>
@@ -28,9 +29,9 @@
         </tr>
         <tr>
             <td>身高</td>
-            <td class="right"><input type="text" class="wd-lg" placeholder="M" /> M</td>
+            <td class="right"><input type="text" class="wd-lg" placeholder="M"/> M</td>
             <td>体重</td>
-            <td class="right"><input type="text" class="wd-lg" placeholder="KG" /> KG</td>
+            <td class="right"><input type="text" class="wd-lg" placeholder="KG"/> KG</td>
             <td>身份证号</td>
             <td colspan="4"><input type="text"/></td>
         </tr>
@@ -38,17 +39,17 @@
             <td>文化程度</td>
             <td colspan="4">
                 <!-- checkbox -->
-                <div class="radio-group">
-                    <input type="radio" name="stu" id="0" checked/>
+                <div class="radio-group" id="education">
+                    <input type="radio" name="stu" id="0" value="研究生" checked="checked"/>
                     <label for="0">研究生</label>
 
-                    <input type="radio" name="stu" id="1" />
+                    <input type="radio" name="stu" id="1" value="本科"/>
                     <label for="1">本科</label>
 
-                    <input type="radio" name="stu" id="2" />
+                    <input type="radio" name="stu" id="2" value="专科"/>
                     <label for="2">专科</label>
 
-                    <input type="radio" name="stu" id="other" />
+                    <input type="radio" name="stu" value="其他" id="other"/>
                     <label for="other">其他</label>
                 </div>
             </td>
@@ -58,7 +59,7 @@
             <td colspan="2">外语语种及级别</td>
             <td colspan="5"><input type="text"/></td>
             <td colspan="2" rowspan="6">
-                <button class="pic-btn" onClick="alert('添加一张照片！')">近期免冠照片<br>(会员协会盖章)</button>
+                <button class="pic-btn" onClick="alert('添加一张照片！')">近期免冠照片<br/>(会员协会盖章)</button>
             </td>
         </tr>
         <tr>
@@ -74,17 +75,17 @@
             <td colspan="2" rowspan="2">现有级别及批准日期</td>
             <td colspan="5">
                 <!-- radio -->
-                <div class="radio-group">
-                    <input type="radio" name="level" id="country" checked/>
+                <div class="radio-group" id="level">
+                    <input type="radio" name="level" id="country" value="国家级" checked="checked"/>
                     <label for="country">国家级</label>
 
-                    <input type="radio" name="level" id="one" />
+                    <input type="radio" name="level" value="一级" id="one"/>
                     <label for="one">一级</label>
 
-                    <input type="radio" name="level" id="two" />
+                    <input type="radio" name="level" value="二级" id="two"/>
                     <label for="two">二级</label>
 
-                    <input type="radio" name="level" id="three" />
+                    <input type="radio" name="level" value="三级" id="three"/>
                     <label for="three">三级</label>
                 </div>
             </td>
@@ -110,7 +111,8 @@
     <table class="dao-table row">
         <thead>
         <tr>
-            <th colspan="3">足球运动经历</td>
+            <th colspan="3">足球运动经历
+            </th>
         </tr>
         <tr>
             <th>时间</th>
@@ -133,7 +135,8 @@
     <table class="dao-table row">
         <thead>
         <tr>
-            <th colspan="5">裁判培训经历</td>
+            <th colspan="5">裁判培训经历
+            </th>
         </tr>
         <tr>
             <th>时间</th>
@@ -160,7 +163,8 @@
     <table class="dao-table row">
         <thead>
         <tr>
-            <th colspan="5">裁判工作经历（最近一年工作场次）</td>
+            <th colspan="5">裁判工作经历（最近一年工作场次）
+            </th>
         </tr>
         <tr>
             <th>比赛类别</th>
@@ -171,31 +175,30 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-        </tr>
-        <tfoot>
-        <tr>
-            <th>合计</th>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-        </tr>
-        </tfoot>
+            <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+            </tr>
+                <tr>
+                    <th>合计</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
         </tbody>
     </table>
     <button onClick="addRowToInfo4()">添加一行</button>
 </div>
 <div class="footer">
-    <span>申报人签名： <input type="text" class="wd-xs underline"></span>
-    <span>会员协会公章：<input type="text" class="wd-xs underline"></span>
+    <button class="btn btn-sm btn-danger submit-action" id="submit_btn"><i
+            class="fa fa-check"></i>添加
+    </button>
 </div>
-<script src="js/register/register.js">
-</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/register/register.js"></script>
 </body>
 </html>

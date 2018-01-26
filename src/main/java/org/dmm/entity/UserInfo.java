@@ -11,7 +11,7 @@ import javax.persistence.Id;
  */
 @Entity
 @DynamicUpdate(true)
-public class UserInfo extends BaseEntity{
+public class UserInfo{
     @Id
     @GeneratedValue
     private Integer id;
@@ -22,7 +22,7 @@ public class UserInfo extends BaseEntity{
 
     private String nativePlace;
 
-    private String Association;
+    private String association;
 
     private String height;
 
@@ -44,12 +44,13 @@ public class UserInfo extends BaseEntity{
 
     private String currentLevel;
 
-    private String LevelDate;
+    private String levelDate;
 
     private String email;
 
     private String address;
 
+    private Integer registerInfoId;
 
     public Integer getId() {
         return id;
@@ -84,11 +85,11 @@ public class UserInfo extends BaseEntity{
     }
 
     public String getAssociation() {
-        return Association;
+        return association;
     }
 
     public void setAssociation(String association) {
-        Association = association;
+        this.association = association;
     }
 
     public String getHeight() {
@@ -172,11 +173,11 @@ public class UserInfo extends BaseEntity{
     }
 
     public String getLevelDate() {
-        return LevelDate;
+        return levelDate;
     }
 
     public void setLevelDate(String levelDate) {
-        LevelDate = levelDate;
+        this.levelDate = levelDate;
     }
 
     public String getEmail() {
@@ -195,6 +196,14 @@ public class UserInfo extends BaseEntity{
         this.address = address;
     }
 
+    public Integer getRegisterInfoId() {
+        return registerInfoId;
+    }
+
+    public void setRegisterInfoId(Integer registerInfoId) {
+        this.registerInfoId = registerInfoId;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -202,7 +211,7 @@ public class UserInfo extends BaseEntity{
                 ", realName='" + realName + '\'' +
                 ", birthday='" + birthday + '\'' +
                 ", nativePlace='" + nativePlace + '\'' +
-                ", Association='" + Association + '\'' +
+                ", association='" + association + '\'' +
                 ", height='" + height + '\'' +
                 ", weight='" + weight + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
@@ -213,9 +222,10 @@ public class UserInfo extends BaseEntity{
                 ", otherNumber='" + otherNumber + '\'' +
                 ", company='" + company + '\'' +
                 ", currentLevel='" + currentLevel + '\'' +
-                ", LevelDate='" + LevelDate + '\'' +
+                ", levelDate='" + levelDate + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
+                ", registerInfoId=" + registerInfoId +
                 '}';
     }
 }

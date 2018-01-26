@@ -9,7 +9,7 @@ import java.util.Date;
 @MappedSuperclass
 public class BaseEntity extends PageEntity {
 
-    private Integer creator = 1;
+    private Integer creator;
 
     private Date createTime = new Date();
 

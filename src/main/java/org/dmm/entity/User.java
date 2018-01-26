@@ -1,5 +1,6 @@
 package org.dmm.entity;
 
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @DynamicUpdate(true)
+@DynamicInsert(true)
 public class User extends BaseEntity {
 
     @Id

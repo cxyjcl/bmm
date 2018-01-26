@@ -11,7 +11,7 @@ import javax.persistence.Id;
  */
 @Entity
 @DynamicUpdate(true)
-public class Train extends BaseEntity{
+public class Train{
 
     @Id
     @GeneratedValue
@@ -26,6 +26,8 @@ public class Train extends BaseEntity{
     private String trainPlace;
 
     private String teacher;
+
+    private Integer registerInfoId;
 
     public Integer getId() {
         return id;
@@ -75,6 +77,14 @@ public class Train extends BaseEntity{
         this.teacher = teacher;
     }
 
+    public Integer getRegisterInfoId() {
+        return registerInfoId;
+    }
+
+    public void setRegisterInfoId(Integer registerInfoId) {
+        this.registerInfoId = registerInfoId;
+    }
+
     @Override
     public String toString() {
         return "Train{" +
@@ -84,6 +94,7 @@ public class Train extends BaseEntity{
                 ", trainLevel='" + trainLevel + '\'' +
                 ", trainPlace='" + trainPlace + '\'' +
                 ", teacher='" + teacher + '\'' +
+                ", registerInfoId=" + registerInfoId +
                 '}';
     }
 }

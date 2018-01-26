@@ -2,7 +2,8 @@ $("#login_save_btn").click(function () {
     var wordValue = $("#password").val();
     var realName = $("#real_name").val();
     var rePassword = $("#re_password").val();
-    $("#login_error_message").html("请稍等....");
+    var loginName = $("#username").val();
+    $("#error_message").html("请稍等....");
     if (realName == "") {
         $("#error_message").html("真实名不得为空");
     }
@@ -12,14 +13,16 @@ $("#login_save_btn").click(function () {
     else if (rePassword == "") {
         $("#error_message").html("密码不得为空");
     }
-    if (rePassword != wordValue) {
+    else if (rePassword != wordValue) {
         $("#error_message").html("两次密码输入不正确");
     }
     else{
         var _data = {
+            'loginName': loginName,
             'password': wordValue,
             'realName': realName
         };
+        console.log(_data)
         $.ajax({
             headers: {
                 'Accept': 'application/json',
@@ -32,7 +35,7 @@ $("#login_save_btn").click(function () {
             dataType: "json",
             data: JSON.stringify(_data),
             success: function (data) {
-                $("#login_error_message").html(data.msg);
+                $("#error_message").html(data.msg);
             }
         });
     }
