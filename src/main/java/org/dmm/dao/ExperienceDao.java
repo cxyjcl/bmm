@@ -12,4 +12,6 @@ import java.util.List;
 public interface ExperienceDao extends JpaRepository<Experience, Integer> {
 
     ArrayList<Experience> findAllByRegisterInfoId(Integer registerInfoId);
+
+    void deleteByRegisterInfoId(Integer registerInfoId);
 }

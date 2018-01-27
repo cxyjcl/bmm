@@ -11,8 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Administrator on 2018/1/26 0026.
@@ -105,6 +109,11 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public void insertAllRegister(RegisterAddVo vo) {
+        Integer registerInfoId = vo.getInfo().getRegisterInfoId();
+        userInfoDao.deleteByRegisterInfoId(registerInfoId);
+        experienceDao.deleteByRegisterInfoId(registerInfoId);
+        jobDao.deleteByRegisterInfoId(registerInfoId);
+        trainDao.deleteByRegisterInfoId(registerInfoId);
         userInfoDao.save(vo.getInfo());
         experienceDao.save(vo.getExperienceList());
         jobDao.save(vo.getJobList());
@@ -123,5 +132,29 @@ public class RegisterServiceImpl implements RegisterService {
         vo.setJobList(jobList);
         vo.setTrainList(trainList);
         return vo;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        dao.delete(id);
+    }
+
+    @Override
+    public String uploadFile(byte[] bytes, String filePath, String fileName, Integer id) throws IOException {
+        File targetFile = new File(filePath);
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }
+        String url = UUID.randomUUID().toString().substring(5)+fileName;
+        FileOutputStream out = new FileOutputStream(filePath+url);
+        RegisterInfo info = new RegisterInfo();
+        String html = "http://localhost/"+url;
+        info.setPhoto(html);
+        info.setId(id);
+        dao.save(info);
+        out.write(bytes);
+        out.flush();
+        out.close();
+        return html;
     }
 }

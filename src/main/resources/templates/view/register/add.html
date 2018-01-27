@@ -5,13 +5,14 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Table</title>
+    <title>信息添加</title>
     <link type="text/css" rel="stylesheet" href="css/register/register.css"/>
     <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css"/>
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 
 <body>
+<input type="file" id="file" style="display: none;" onchange="upload()"/>
 <div class="dao-table-main" id="info">
     <table class="dao-table row" id="user_info">
         <thead>
@@ -59,7 +60,7 @@
             <td colspan="2">外语语种及级别</td>
             <td colspan="5"><input type="text"/></td>
             <td colspan="2" rowspan="6">
-                <button class="pic-btn" onClick="alert('添加一张照片！')">近期免冠照片<br/>(会员协会盖章)</button>
+                <img class="pic-btn" id="photo" onClick="add_photo()"/>近期免冠照片<br/>(会员协会盖章)
             </td>
         </tr>
         <tr>
@@ -174,21 +175,23 @@
             <th>裁判长</th>
         </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-                <td><input type="text" /></td>
-            </tr>
-                <tr>
-                    <th>合计</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+        <tbody id="table">
+        <tr>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+        </tr>
+        <tfoot>
+        <tr id="total">
+            <td style="text-align: center">合计</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tfoot>
         </tbody>
     </table>
     <button onClick="addRowToInfo4()">添加一行</button>
@@ -199,6 +202,7 @@
     </button>
 </div>
 <script src="js/jquery.min.js"></script>
+<script src="js/global.js"></script>
 <script src="js/register/register.js"></script>
 </body>
 </html>

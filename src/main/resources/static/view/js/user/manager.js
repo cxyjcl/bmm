@@ -111,7 +111,7 @@ $("#update_btn").click(function () {
             'userLevel': userLevel
         };
         $.ajax({
-            url: "http://localhost:8080/update/user",
+            url: "http://119.23.229.247:8080/update/user",
             type: "POST",
             contentType: "application/json",
             dataType: "json",

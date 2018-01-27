@@ -9,7 +9,7 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/bmm?useUniCommonStatusEnum=true&characterEncoding=UTF-8&serverTimezone=UTC
       username: root
-      password: 123456
+      password:
       # 初始化大小，最小，最大
       initialSize:  1
       minIdle:  5
@@ -32,4 +32,9 @@ spring:
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+
+  http:
+    multipart:
+      maxFileSize: 3Mb
+      maxRequestSize: 3Mb

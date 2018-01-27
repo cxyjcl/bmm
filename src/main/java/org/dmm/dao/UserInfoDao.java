@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserInfoDao extends JpaRepository<UserInfo, Integer> {
     UserInfo findAllByRegisterInfoId(Integer registerInfoId);
+
+    void deleteByRegisterInfoId(Integer registerInfoId);
 }

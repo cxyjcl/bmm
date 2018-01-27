@@ -13,4 +13,6 @@ import java.util.ArrayList;
 public interface JobDao extends JpaRepository<Job, Integer> {
 
     ArrayList<Job> findAllByRegisterInfoId(Integer registerInfoId);
+
+    void deleteByRegisterInfoId(Integer registerInfoId);
 }

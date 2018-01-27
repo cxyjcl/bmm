@@ -1,5 +1,5 @@
 $("#verify_img").click(function () {
-    $("#verify_img").attr("src", "http://localhost:8080/code/verify?time=" + new Date().getTime());
+    $("#verify_img").attr("src", "http://119.23.229.247:8080/code/verify?time=" + new Date().getTime());
 })
 $("#submit_btn").click(function () {
     var userValue = $("#login_name").val();
@@ -37,7 +37,7 @@ $("#submit_btn").click(function () {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': "*"
             },
-            url: "http://localhost:8080/login",
+            url: "http://119.23.229.247:8080/login",
             type: "POST",
             contentType: "application/json",
             dataType: "json",
@@ -45,9 +45,9 @@ $("#submit_btn").click(function () {
             success: function (data) {
                 if (data.code != "10000") {
                     $("#error_message").html(data.msg);
-                    $("#verify_img").attr("src", "http://localhost:8080/code/verify?time=" + new Date().getTime());
+                    $("#verify_img").attr("src", "http://119.23.229.247:8080/code/verify?time=" + new Date().getTime());
                 } else {
-                    window.location.href = "http://localhost:8080/view/change"
+                    window.location.href = "http://119.23.229.247:8080/view/change"
                 }
             }
         });

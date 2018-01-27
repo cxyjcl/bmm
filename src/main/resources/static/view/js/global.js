@@ -1,6 +1,7 @@
 /**
  * Created by pohoulong on 2018/1/17.
  */
+
 function get_info_status(status) {
     if (status == "001") {
         return "已提交"
@@ -25,7 +26,7 @@ function get_status(status) {
 }
 $(function () {
     $.ajax({
-        url: "http://localhost:8080/user/get",
+        url: "http://119.23.229.247:8080/user/get",
         type: "POST",
         dataType: "json",
         success: function (data) {
@@ -46,7 +47,14 @@ $(function () {
                 $("#header_img").html(data.data.userImg);
                 $("#username").val(data.data.loginName);
                 $("#real_name").val(data.data.realName);
+                if(data.data.userLevel == "普通用户"){
+                    $("#people_manager").remove();
+                    $("#list_tab").remove()
+                }
             }
+        },
+        error:function () {
+            window.location.href = "http://119.23.229.247:8080/view/error";
         }
     });
 })

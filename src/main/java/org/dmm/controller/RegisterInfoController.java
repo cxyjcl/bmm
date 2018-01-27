@@ -7,11 +7,10 @@ import org.dmm.service.RegisterService;
 import org.dmm.vo.RegisterAddVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -72,7 +71,7 @@ public class RegisterInfoController {
         Integer id = Integer.parseInt(session.getAttribute("userId").toString());
         registerService.insertInfo(id);
         session.setAttribute("registerId",id);
-        return Message.success();
+        return Message.success(id);
     }
 
     @PostMapping("/get/id/register")
@@ -84,6 +83,31 @@ public class RegisterInfoController {
     @PostMapping("/update/{id}/register")
     public Message getRegister(@PathVariable("id") Integer id,HttpSession session){
         session.setAttribute("registerId",id);
+        return Message.success();
+    }
+
+    @PostMapping("register/{id}/delete")
+    public Message delete(@PathVariable("id") Integer id){
+        registerService.deleteById(id);
+        return Message.success();
+    }
+
+    @PostMapping("/register/upload")
+    public Message uploadImg(@RequestParam("registerId") Integer id,
+                            @RequestParam("file") MultipartFile uploadFile) {
+        String fileName = uploadFile.getOriginalFilename();
+        String filePath = "c:\\nginx\\html\\";
+        try {
+            String url= registerService.uploadFile(uploadFile.getBytes(), filePath, fileName,id);
+            return Message.success(url);
+        } catch (Exception e) {
+            return Message.error();
+        }
+
+    }
+    @PostMapping("/register/id/remove")
+    public Message uploadImg(HttpSession session) {
+        session.removeAttribute("registerId");
         return Message.success();
     }
 }

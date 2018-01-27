@@ -19,6 +19,8 @@ public class RegisterInfo extends BaseEntity{
 
     private String realName;
 
+    private String photo;
+
     public Integer getId() {
         return id;
     }
@@ -35,11 +37,20 @@ public class RegisterInfo extends BaseEntity{
         this.realName = realName;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "RegisterInfo{" +
                 "id=" + id +
                 ", realName='" + realName + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

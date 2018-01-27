@@ -6,6 +6,8 @@ import org.dmm.exception.ConnectionRefusedException;
 import org.dmm.vo.RegisterAddVo;
 import org.springframework.data.domain.Page;
 
+import java.io.IOException;
+
 /**
  * Created by Administrator on 2018/1/26 0026.
  */
@@ -22,4 +24,8 @@ public interface RegisterService extends BaseService<RegisterInfo>{
     void insertAllRegister(RegisterAddVo vo);
 
     RegisterAddVo selectAllRegister(Integer id);
+
+    void deleteById(Integer id);
+
+    String uploadFile(byte[] bytes, String filePath, String fileName, Integer id) throws IOException;
 }

@@ -101,7 +101,7 @@ function request() {
                 html += "<td>" + date.toLocaleDateString() + "</td>"
                 html += "<td><span class='label label-sm label-success'>" + get_info_status(data.data.content[i].dataStatus) + "</span></td>"
                 html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='change(this)'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td>"
-                html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='remove(this)'><i class='fa fa-trash'></i>&nbsp; 删除 </button></td></tr>"
+                html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='remove_info(this)'><i class='fa fa-trash'></i>&nbsp; 删除 </button></td></tr>"
             }
             $("#own-list").append(html);
         }
@@ -138,7 +138,7 @@ function list_request() {
                 html += "<td>" + data.data.content[i].realName + "</td>"
                 html += "<td><span class='label label-sm label-success'>" + get_info_status(data.data.content[i].dataStatus) + "</span></td>"
                 html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='change(this)'><i class='fa fa-edit'></i>&nbsp; 修改 </button></td>"
-                html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='remove(this)'><i class='fa fa-trash'></i>&nbsp; 删除 </button></td></tr>"
+                html += "<td> <button type='button' class='btn btn-default btn-xs' onclick='remove_info(this)'><i class='fa fa-trash'></i>&nbsp; 删除 </button></td></tr>"
             }
             $("#list").append(html);
         }
@@ -153,41 +153,48 @@ function change(which){
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': "*"
         },
-        url: "http://localhost:8080/update/"+id+"/register",
+        url: "http://119.23.229.247:8080/update/"+id+"/register",
         type: "POST",
         contentType: "application/json",
         dataType: "json",
         success: function (data) {
-            window.open("http://localhost:8080/view/add");
+            window.open("http://119.23.229.247:8080/view/add");
         }
     });
 }
 
 $("#add_register").click(function () {
-    window.open("http://localhost:8080/view/add")
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
+        },
+        url: "http://119.23.229.247:8080/register/id/remove",
+        type: "POST",
+        dataType: "json",
+        success: function (data) {
+            window.open("http://119.23.229.247:8080/view/add")
+        }
+    });
 })
 
-function remove(which){
+function remove_info(which){
     var id = $(which).parent().parent().attr("id");
     var rs = confirm('是否要删除此记录？');
     if (rs) {
-        var _remove = {
-            'id': id,
-            'dataStatus':"000"
-        };
         $.ajax({
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': "*"
             },
-            url: "http://localhost:8080/register/update",
+            url: "http://119.23.229.247:8080/register/"+id+"/delete",
             type: "POST",
-            contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify(_remove),
             success: function (data) {
                 alert(data.msg);
+                $(which).parent().parent().remove();
             }
         });
     }

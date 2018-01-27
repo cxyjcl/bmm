@@ -14,4 +14,6 @@ import java.util.List;
 public interface TrainDao extends JpaRepository<Train, Integer> {
 
     ArrayList<Train> findAllByRegisterInfoId(Integer registerInfoId);
+
+    void deleteByRegisterInfoId(Integer registerInfoId);
 }

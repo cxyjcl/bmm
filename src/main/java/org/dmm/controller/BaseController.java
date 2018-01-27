@@ -13,32 +13,34 @@ public class BaseController {
 
     @GetMapping("view/login")
     public String login(){
-        return "/view/user/login";
+        return "view/user/login";
     }
 
     @GetMapping("view/register")
     public String register(){
-        return "/view/user/register";
+        return "view/user/register";
     }
 
     @GetMapping("view/manager")
     public String manager(){
-        return "/view/user/manager";
+        return "view/user/manager";
     }
 
     @GetMapping("view/change")
     public String change(){
-        return "/view/user/change";
+        return "view/user/change";
     }
 
     @GetMapping("view/add")
     public String add(){
-        return "/view/register/add";
+        return "view/register/add";
     }
 
     @GetMapping("view/list")
     public String list(){
-        return "/view/register/list";
+        return "view/register/list";
     }
 
+    @GetMapping("/view/error")
+    public String error(){ return "view/500";}
 }
