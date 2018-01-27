@@ -5,11 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.transaction.Transactional;
+
 /**
  * Created by Administrator on 2018/1/26 0026.
  */
 public interface RegisterInfoDao extends JpaRepository<RegisterInfo, Integer> {
     Page<RegisterInfo> findAllByCreator(Pageable pageable, Integer creator);
-
+    @Transactional
     Page<RegisterInfo> findAllByRealName(Pageable pageable, String realName);
 }

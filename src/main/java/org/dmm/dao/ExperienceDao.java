@@ -3,6 +3,7 @@ package org.dmm.dao;
 import org.dmm.entity.Experience;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,6 @@ import java.util.List;
 public interface ExperienceDao extends JpaRepository<Experience, Integer> {
 
     ArrayList<Experience> findAllByRegisterInfoId(Integer registerInfoId);
-
+    @Transactional
     void deleteByRegisterInfoId(Integer registerInfoId);
 }

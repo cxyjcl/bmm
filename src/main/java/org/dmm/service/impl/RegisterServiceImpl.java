@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -121,6 +122,7 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
+    @Transactional
     public RegisterAddVo selectAllRegister(Integer registerId) {
         RegisterAddVo vo = new RegisterAddVo();
         UserInfo info = userInfoDao.findAllByRegisterInfoId(registerId);
@@ -148,7 +150,7 @@ public class RegisterServiceImpl implements RegisterService {
         String url = UUID.randomUUID().toString().substring(5)+fileName;
         FileOutputStream out = new FileOutputStream(filePath+url);
         RegisterInfo info = new RegisterInfo();
-        String html = "http://localhost/"+url;
+        String html = "http://119.23.229.247/"+url;
         info.setPhoto(html);
         info.setId(id);
         dao.save(info);

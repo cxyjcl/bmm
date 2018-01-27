@@ -58,7 +58,7 @@ function request() {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': "*"
         },
-        url: "http://localhost:8080" + url,
+        url: "http://119.23.229.247:8080" + url,
         type: "POST",
         contentType: "application/json",
         dataType: "json",

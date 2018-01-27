@@ -56,6 +56,8 @@ button:hover {
     text-align: center;
     line-height: 2em;
     background-color: inherit;
+    display:inline-block;
+    position:absolute;
 }
 .pic-btn:hover {
     background-color: inherit;
